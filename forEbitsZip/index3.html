@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+
+<!-- implement pictures on the web page -->
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ocean Denmark Hang From Pull-Up Bar Competition</title>
+    <style>
+      @import url("https://use.typekit.net/dhj1fzt.css");
+      h1,
+      h2,
+      h3,
+      p {
+        font-family: "trade-gothic-next", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      h2,
+      #average-time {
+        color: #ff0000;
+      }
+
+      .main-wrapper {
+        height: 100%;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 70px 70px 30px 70px;
+      }
+
+      #average-time {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .average-time {
+        display: none;
+      }
+
+      .interactive-part {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: -140px;
+      }
+
+      .input_form {
+        width: 98%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .title-big {
+        width: 98%;
+        font-size: 240pt;
+        letter-spacing: 25px;
+        text-align: center;
+        color: #ff0000;
+        font-weight: bold;
+        letter-spacing: 60px;
+      }
+
+      .title-small {
+        font-size: 147pt;
+        font-style: bold;
+        align-self: flex-start;
+        text-align: right;
+      }
+      .input_form {
+        margin-bottom: -65px;
+      }
+      .name-input {
+        width: 102%;
+        height: 210px;
+        background-color: #eb2136;
+        padding: 1% 12px 1% 12px;
+        font-size: 135pt;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #ffffff;
+      }
+
+      .name-input::placeholder {
+        color: #ffffff;
+        font-size: 135pt;
+      }
+
+      .counter-body {
+        width: 98%;
+        height: 310px;
+        background-color: #eb2136;
+        text-align: center;
+        align-content: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        padding: 40px 35px 15px 35px;
+        font-size: 94pt;
+        font-weight: 800;
+        font-style: bold;
+        letter-spacing: 50px;
+      }
+
+      .time-slots-table-wrapper {
+        width: 100%;
+        height: 1%;
+        align-content: flex-start;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .slots-holder {
+        width: 98%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10;
+        margin-top: -100px;
+      }
+
+      .time-slot-wrapper {
+        width: 98%;
+        height: 240px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #eb2136;
+        margin-bottom: 15px;
+        padding: 0px 40px 0px 42px;
+        color: #ffffff;
+      }
+
+      .name-time-holder {
+        width: 47%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .medal-holder {
+        width: 45%;
+        height: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+
+      .medal-holder-no-medal {
+        font-size: 80pt;
+        margin-right: 60px;
+      }
+
+      .time-slot {
+        width: 100%;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 10px 20px 20px 20px;
+        margin-bottom: 60px;
+      }
+
+      .time-slot-name,
+      .time-slot-time {
+        width: 100%;
+        height: 10%;
+        color: white;
+      }
+
+      .name-time-holder {
+        font-size: 61pt;
+      }
+
+      .medal-picture {
+        width: 21%;
+        height: 82%;
+        margin-right: 0px;
+        align-content: flex-end;
+      }
+
+      .time-slot-name {
+        width: 100%;
+        font-size: 61pt;
+      }
+
+      .time-slot-time {
+        font-size: 34pt;
+        margin-top: -6px;
+      }
+
+      ul {
+        list-style-type: none;
+      }
+
+      .disclaimer-image {
+        width: 670px;
+        height: 130px;
+        align-self: flex-end;
+        margin-right: -30px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!--
+    <h2>ESP Image Web Server</h2>
+    <img src="gold" />
+    <img src="silver" />
+    <img src="bronze" />
+    <img src="disclaimer" />
+    -->
+    <div class="main-wrapper">
+      <h1 class="title-big" id="title">DIN TID</h1>
+      <!-- Add form for entering player name -->
+      <div class="interactive-part">
+        <form class="input_form" id="player-form">
+          <input
+            class="name-input"
+            type="text"
+            id="player-name"
+            name="player-name"
+            placeholder="Navn Efternavn"
+          /><br /><br />
+        </form>
+
+        <h1 class="counter-body" id="counter">00 . 00 . 000</h1>
+        <div class="time-slots-table-wrapper">
+          <h2 class="title-small">DAGENS TOP 5</h2>
+          <ul class="slots-holder" id="recorded-times">
+            <div class="time-slot-wrapper">
+              <div class="name-time-holder" id="time-1">
+                <div class="time-slot">
+                  <p class="time-slot-name">Navn Efternavn</p>
+                  <p class="time-slot-time">00 . 00 . 000</p>
+                </div>
+              </div>
+              <div class="medal-holder">
+                <img class="medal-picture" src="assets/Medal_first_place.png" />
+              </div>
+            </div>
+            <div class="time-slot-wrapper">
+              <div class="name-time-holder" id="time-2">
+                <div class="time-slot">
+                  <p class="time-slot-name">Navn Efternavn</p>
+                  <p class="time-slot-time">00 . 00 . 000</p>
+                </div>
+              </div>
+              <div class="medal-holder">
+                <img
+                  class="medal-picture"
+                  src="assets/Medal_second_place.png"
+                />
+              </div>
+            </div>
+            <div class="time-slot-wrapper">
+              <div class="name-time-holder" id="time-3">
+                <div class="time-slot">
+                  <p class="time-slot-name">Navn Efternavn</p>
+                  <p class="time-slot-time">00 . 00 . 000</p>
+                </div>
+              </div>
+              <div class="medal-holder">
+                <img class="medal-picture" src="assets/Medal_third_place.png" />
+              </div>
+            </div>
+            <div class="time-slot-wrapper">
+              <div class="name-time-holder" id="time-4">
+                <div class="time-slot">
+                  <p class="time-slot-name">Navn Efternavn</p>
+                  <p class="time-slot-time">00 . 00 . 000</p>
+                </div>
+              </div>
+              <div class="medal-holder medal-holder-no-medal">4</div>
+            </div>
+            <div class="time-slot-wrapper">
+              <div class="name-time-holder" id="time-5">
+                <div class="time-slot">
+                  <p class="time-slot-name">Navn Efternavn</p>
+                  <p class="time-slot-time">00 . 00 . 000</p>
+                </div>
+              </div>
+              <div class="medal-holder medal-holder-no-medal">5</div>
+            </div>
+          </ul>
+          <img class="disclaimer-image" src="assets/disclaimer.png" />
+        </div>
+      </div>
+      <h2 class="average-time">Average Time</h2>
+      <p style="display: none" class="average-time" id="average-time">0</p>
+    </div>
+
+    <!-- <== SCRIPT STARTS HERE ==> -->
+
+    <script>
+      var count = 0;
+      var intervalId;
+      var total = 0;
+      var timesRecorded = 0; // initialize to 0
+      var recordedTimes = [];
+
+      //Remove later!
+
+      function triggerCount() {
+        count = 0;
+        intervalId = setInterval(function () {
+          count += 0.01; // increment count by 0.01 seconds
+          document.getElementById("counter").innerHTML = count.toFixed(2); // update counter with two decimal places
+        }, 10);
+      }
+
+      const stopCounte = () => {
+        count += 0.0; // stop the increment
+        document.getElementById("counter").innerHTML = count.toFixed(2);
+        setTimeout(function () {
+          count = 0;
+          document.getElementById("counter").innerHTML = count.toFixed(2); // update counter on the web page
+        }, 5000);
+
+        clearInterval(intervalId);
+
+        // Get the player name entered in the form
+        var playerName = document.getElementById("player-name").value;
+
+        // If no player name was entered, use a default name
+        if (!playerName) {
+          playerName = "Anonymous";
+        }
+
+        // Add the recorded time and player name to the array
+        recordedTimes.push({ time: count, player: playerName });
+
+        // Sort the array in descending order
+        recordedTimes.sort(function (a, b) {
+          return b.time - a.time;
+        });
+
+        // if the recorded times array has more than 5 elements,
+        // remove the 6th longest time to keep only the top 5 times
+        if (recordedTimes.length > 5) {
+          recordedTimes = recordedTimes.slice(0, 5);
+        }
+
+        // Display the top 5 longest recorded times with player names
+        for (var i = 0; i < 5; i++) {
+          var timeElement = document.getElementById("time-" + (i + 1));
+          if (i < recordedTimes.length) {
+            timeElement.innerHTML = `<div class="time-slot"> <p class="time-slot-name">${
+              recordedTimes[i].player
+            }</p> <p class="time-slot-time">${recordedTimes[i].time.toFixed(
+              2
+            )}</p> </div>`;
+          } else {
+            timeElement.innerHTML = `<div class="time-slot"> <p class="time-slot-name">Navn Efternavn</p> <p class="time-slot-time">00 . 00 . 000</p> </div>`;
+          }
+        }
+
+        // Calculate average time
+        timesRecorded++; // always increment when a new time is added
+        total += count;
+        if (timesed > 0) {
+          var average = total / timesRecorded;
+          document.getElementById("average-time").innerHTML =
+            average.toFixed(2);
+        } else {
+          // If there are no times recorded, reset the total time
+          total = 0;
+        }
+
+        // Reset the counter
+        count = 0;
+        document.getElementById("counter").innerHTML = count.toFixed(2);
+      };
+
+      //DELETE UNTILL HERE
+      ////////////////////////////////
+
+      // Connect to the ESP32's WebSocket server
+      var socket = new WebSocket("ws://" + location.host + "/ws");
+
+      // Listen for messages from the ESP32
+      socket.onmessage = function (event) {
+        // If the message is "start", start counting
+        if (event.data == "start") {
+          count = 0;
+          intervalId = setInterval(function () {
+            count += 0.01; // increment count by 0.01 seconds
+            document.getElementById("counter").innerHTML = count.toFixed(2); // update counter with two decimal places
+          }, 10); // update the count every 10 milliseconds
+        }
+        // If the message is "stop", stop counting and add the time to the list
+        else if (event.data == "stop") {
+          count += 0.0; // stop the increment
+          document.getElementById("counter").innerHTML = count.toFixed(2);
+          setTimeout(function () {
+            count = 0;
+            document.getElementById("counter").innerHTML = count.toFixed(2); // update counter on the web page
+          }, 5000);
+
+          clearInterval(intervalId);
+
+          // Get the player name entered in the form
+          var playerName = document.getElementById("player-name").value;
+
+          // If no player name was entered, use a default name
+          if (!playerName) {
+            playerName = "Anonymous";
+          }
+
+          // Add the recorded time and player name to the array
+          recordedTimes.push({ time: count, player: playerName });
+
+          // Sort the array in descending order
+          recordedTimes.sort(function (a, b) {
+            return b.time - a.time;
+          });
+
+          // if the recorded times array has more than 5 elements,
+          // remove the 6th longest time to keep only the top 5 times
+          if (recordedTimes.length > 5) {
+            recordedTimes = recordedTimes.slice(0, 5);
+          }
+
+          // Display the top 5 longest recorded times with player names
+          for (var i = 0; i < 5; i++) {
+            var timeElement = document.getElementById("time-" + (i + 1));
+            if (i < recordedTimes.length) {
+              timeElement.innerHTML = `<div class="time-slot"> <p class="time-slot-name">${
+                recordedTimes[i].player
+              }</p> <p class="time-slot-time">${recordedTimes[i].time.toFixed(
+                2
+              )}</p> </div>`;
+            } else {
+              timeElement.innerHTML = `<div class="time-slot"> <p class="time-slot-name">Navn Efternavn</p> <p class="time-slot-time">00 . 00 . 000</p> </div>`;
+            }
+          }
+
+          // Calculate average time
+          timesRecorded++; // always increment when a new time is added
+          total += count;
+          if (timesed > 0) {
+            var average = total / timesRecorded;
+            document.getElementById("average-time").innerHTML =
+              average.toFixed(2);
+          } else {
+            // If there are no times recorded, reset the total time
+            total = 0;
+          }
+
+          // Reset the counter
+          count = 0;
+          document.getElementById("counter").innerHTML = count.toFixed(2);
+
+          // Notify the ESP32 that the time has been recorded
+          socket.send("recorded");
+        }
+      };
+
+      // Send a message to the ESP32 to start the competition when the page loads
+      window.addEventListener("load", function () {
+        socket.send("start");
+      });
+
+      // Listen for form submissions
+      var form = document.getElementById("player-form");
+      form.addEventListener("submit", function (event) {
+        event.preventDefault(); // prevent the form from reloading the page
+
+        // Get the name from the form and clear the input field
+        var nameInput = document.getElementById("name-input");
+        var name = nameInput.value.trim();
+        nameInput.value = "";
+
+        // If no name was entered, use a default name
+        if (name.length === 0) {
+          name = "Anonymous";
+        }
+
+        // Send the name to the ESP32 via WebSocket
+        socket.send("name:" + name);
+      });
+    </script>
+  </body>
+</html>
